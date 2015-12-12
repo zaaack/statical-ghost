@@ -1,10 +1,11 @@
 {
-  "name": "ghost-go",
+  "name": "statical-ghost",
   "version": "1.0.0",
   "description": "another static blog renderer by using ghost themes ",
-  "main": "lib/ghost-go.js",
+  "main": "index.js",
   "bin": {
-    "ghostgo": "bin/cli.js"
+    "statical-ghost": "bin/cli.js",
+    "sg": "bin/cli.js"
   },
   "scripts": {
     "test": "test"
@@ -28,7 +29,7 @@
   "dependencies": {
     "bluebird": "^3.0.6",
     "chalk": "^1.1.1",
-    "commander": "^2.8.1",
+    "commander": "^2.9.0",
     "cson": "^3.0.2",
     "downsize": "0.0.8",
     "fs-plus": "^2.8.1",
@@ -49,6 +50,7 @@
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
     "moment": "^2.10.6",
+    "node-status": "^0.1.6",
     "rss": "^1.1.1"
   }
 }
