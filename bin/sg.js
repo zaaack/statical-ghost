@@ -4,6 +4,8 @@ var logger = require('../lib/utils/logger')
 
 program
   .version(require('../package.json').version)
+  .usage('sg [command] [options]')
+  .description('another static glog generator by using ghost theme')
   .option('-c, --config <path>', 'set config path. defaults to ./config.yaml')
   .option('-p, --port', 'the port of local server')
   .action(function(cmd, config) {
@@ -22,10 +24,10 @@ program
 
 program.command('init')
   .alias('i')
-  .description('initialize blog structure in current directory')
+  .description('initialize blog folders in current directory')
   .action(function() {
     setCliConfig()
-    require('./cli-init')()
+    require('./sg-init')()
   })
 
 

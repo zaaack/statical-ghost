@@ -4,8 +4,8 @@
   "description": "another static blog renderer by using ghost themes ",
   "main": "index.js",
   "bin": {
-    "statical-ghost": "bin/cli.js",
-    "sg": "bin/cli.js"
+    "statical-ghost": "bin/sg.js",
+    "sg": "bin/sg.js"
   },
   "scripts": {
     "test": "test"
@@ -27,7 +27,6 @@
   "homepage": "https://github.com/yzhen123/ghost-go",
   "devDependencies": {},
   "dependencies": {
-    "bluebird": "^3.0.6",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
     "downsize": "0.0.8",
