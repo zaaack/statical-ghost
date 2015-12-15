@@ -29,6 +29,7 @@ then, you got a structure like this:
 ```
 <current directory>
   |-posts   # for your markdown posts, supports sub directory
+  |-files   # files below this directory will be copied to /public
   |-public  # this directory include the generated blog site
   |-tmp     # temp directory, speed up generating
   |-themes  # ghost themes

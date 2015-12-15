@@ -15,7 +15,7 @@ function initConfig(){
 }
 
 function initFolders(){
-  var dirs = ['public', 'posts', 'themes', 'tmp']
+  var dirs = ['public', 'posts', 'themes', 'tmp', 'files']
   dirs.forEach(function(dir) {
     fs.makeTree(config.paths[dir])
   })
