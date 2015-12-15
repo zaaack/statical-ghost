@@ -28,11 +28,9 @@
   "devDependencies": {},
   "dependencies": {
     "bluebird": "^3.0.6",
-    "chalk": "^1.1.1",
+    "colors": "^1.1.2",
     "commander": "^2.9.0",
-    "cson": "^3.0.2",
     "downsize": "0.0.8",
-    "fs-plus": "^2.8.1",
     "handlebars": "^4.0.3",
     "highlight.js": "^8.9.1",
     "javascript-natural-sort": "^0.7.1",
@@ -50,7 +48,8 @@
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
     "moment": "^2.10.6",
-    "node-status": "^0.1.6",
+    "node-static": "^0.7.7",
+    "progress": "^1.1.8",
     "rss": "^1.1.1"
   }
 }

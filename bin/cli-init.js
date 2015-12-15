@@ -1,5 +1,4 @@
-var fsPlus = require('fs-plus')
-var fs = require('fs')
+var fs = require('../lib/utils/fs-plus2')
 var logger = require('../lib/utils/logger')
 var yaml = require('js-yaml')
 
@@ -9,7 +8,8 @@ function initConfig(){
   var baseDir = process.cwd()
   var configFile = global.cliConfig.config || './config.yaml'
   if (!fs.existsSync(configFile)) {
-    fsPlus.createReadStream(__dirname+'/config.yaml').pipe(fsPlus.createWriteStream(configFile))
+    var content = fs.readFileSync(__dirname+'/config.yaml', 'utf-8');
+    fs.writeFileSync(configFile, content, 'utf-8')
   }
   config = require('../lib/config')
 }
@@ -17,7 +17,7 @@ function initConfig(){
 function initFolders(){
   var dirs = ['public', 'posts', 'themes', 'tmp']
   dirs.forEach(function(dir) {
-    fsPlus.makeTree(config.paths[dir])
+    fs.makeTree(config.paths[dir])
   })
 }
 
@@ -29,14 +29,13 @@ function downloadDefaultTheme() {
     function (error) {
       logger.error(error)
     })
-  logger.info('start clone default ghost theme Casper: '+url+'...')
+  logger.info('Start clone default ghost theme Casper: '+url+'...')
   git.stdout.pipe(process.stdout)
   git.stderr.pipe(process.stderr)
 }
 
-
-(function main(){
+module.exports = function main(){
   initConfig()
   initFolders()
   downloadDefaultTheme()
-})()
+}
