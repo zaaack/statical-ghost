@@ -82,7 +82,6 @@ function generate(pool){
 function clean(){
   var config = require('../lib/config')
   fs.removeSync(config.paths.tmp)
-  fs.removeSync(config.paths.public)
 }
 
 function deploy(){
