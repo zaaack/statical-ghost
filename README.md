@@ -1,22 +1,21 @@
 # statical-ghost
 another static blog generator using ghost theme
 
-# INSTALL
+## INSTALL
 
 ```sh
 npm i -g statical-ghost
 ```
 
-# FEATURES
+## FEATURES
 
 * fast, generate thousands of posts only for seconds
 * easy to use, see [usage](#usage)
-*
+* using ghost themes, hundreds of free themes are available <http://marketplace.ghost.org/themes/free/>
 
+## USAGE
 
-# USAGE
-
-## init blog folders
+### init blog folders
 
 first, you need initialize folders in current directory.
 
@@ -39,14 +38,14 @@ this command not only create directories, but also generate demo post, config.ya
 
 after this command, actually you have already got everything ready, just enter next step.
 
-## generate
+### generate
 
 now you can generate your blog, it's very fast because of using multi-process
 ```sh
 sg generate # or sg g
 ```
 
-## server
+### server
 
 you can see your `/public` directory added many files, then run
 
@@ -57,7 +56,7 @@ sg server # or sg s
 to start a local static server, it also auto generate your posts if posts or theme are changed.
 now click <http://127.0.0.1:8080> to enjoy your blog !!!
 
-## see help
+### see help
 
 ```sh
 sg -h
@@ -87,7 +86,7 @@ Usage: sg sg [command] [options]
     -p, --port           the port of local server
 ```
 
-## config file
+### config file
 
 config.yaml
 ```yaml
@@ -144,4 +143,4 @@ tags: # all tags, it would be auto appended after appear in posts
 
 ```
 
-# TODO
+## TODO
