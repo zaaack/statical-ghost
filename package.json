@@ -1,7 +1,7 @@
 {
   "name": "statical-ghost",
-  "version": "1.0.0",
-  "description": "another static blog renderer by using ghost themes ",
+  "version": "1.0.2",
+  "description": "another static blog generator using ghost themes ",
   "main": "index.js",
   "bin": {
     "statical-ghost": "bin/sg.js",
@@ -12,19 +12,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yzhen123/ghost-go.git"
+    "url": "https://github.com/zaaack/statical-ghost.git"
   },
   "keywords": [
     "ghost",
     "static",
     "blog"
   ],
-  "author": "yzhen123",
+  "author": "zaaack",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yzhen123/ghost-go/issues"
+    "url": "https://github.com/zaaack/statical-ghost/issues"
   },
-  "homepage": "https://github.com/yzhen123/ghost-go",
+  "homepage": "https://github.com/zaaack/statical-ghost",
   "devDependencies": {},
   "dependencies": {
     "colors": "^1.1.2",

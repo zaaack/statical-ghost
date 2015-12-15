@@ -26,11 +26,13 @@ sg init # or sg i
 
 then, you got a structure like this:
 
->  <current directory>
->    |-posts   `for your markdown posts, supports sub directory`
->    |-public `this directory include the generated blog site`
->    |-tmp `temp directory, speed up generating`
->    |-themes `ghost themes`
+```
+<current directory>
+  |-posts   # for your markdown posts, supports sub directory
+  |-public #  this directory include the generated blog site
+  |-tmp #temp directory, speed up generating
+  |-themes # ghost themes
+```
 
 this command not only create directories, but also generate demo post, config.yaml and even downloading a default ghost theme Casper. You can right your posts in `/posts`.
 
