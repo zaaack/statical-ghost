@@ -51,7 +51,7 @@ program.command('generateAndDeploy')
   .description('generate and deploy')
   .action(function() {
     setCliConfig()
-    var pool = require('./cli-generate')()
+    var pool = generate()
     pool.on('finish', deploy)
   })
 
@@ -76,7 +76,7 @@ function generate(pool){
     logger.logErrorAndExit(new Error('Default theme is not found!!! [' + config.paths.theme + ']'))
   }
 
-  return require('../lib/generator').generate(pool)
+  return require('../lib/statical_ghost').generate(pool)
 }
 
 function clean(){
@@ -104,7 +104,7 @@ function deploy(){
 function server(){
   var chokidar = require('chokidar');
   var config = require('../lib/config')
-  var generator = require('../lib/generator')
+  var staticalGhost = require('../lib/statical_ghost')
   var static = require('node-static')
   var pool = require('../lib/thread').pool({
     autoKill: false
@@ -122,7 +122,7 @@ function server(){
     if(!isBusy && now - last>1000){
       isBusy = true
       logger.info('start generating...')
-      generator.generate(pool)
+      staticalGhost.generate(pool)
       last =new Date().getTime()
     }
   }

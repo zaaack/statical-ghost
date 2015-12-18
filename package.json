@@ -1,6 +1,6 @@
 {
   "name": "statical-ghost",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "another static blog generator using ghost themes ",
   "main": "index.js",
   "bin": {
@@ -27,12 +27,13 @@
   "homepage": "https://github.com/zaaack/statical-ghost",
   "devDependencies": {},
   "dependencies": {
+    "chokidar": "^1.4.1",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
-    "downsize": "0.0.8",
+    "downsize": "^0.0.8",
+    "fs-plus": "^0.0.8",
     "handlebars": "^4.0.3",
     "highlight.js": "^8.9.1",
-    "javascript-natural-sort": "^0.7.1",
     "js-yaml": "^3.4.6",
     "lodash": "^3.10.1",
     "log4js": "^0.6.29",
