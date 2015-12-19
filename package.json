@@ -2,7 +2,7 @@
   "name": "statical-ghost",
   "version": "1.0.4",
   "description": "another static blog generator using ghost themes ",
-  "main": "index.js",
+  "main": "lib/statical-ghost.js",
   "bin": {
     "statical-ghost": "bin/sg.js",
     "sg": "bin/sg.js"

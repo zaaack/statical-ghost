@@ -17,19 +17,20 @@ function initConfig(){
 function initFolders(){
   var dirs = ['public', 'posts', 'themes', 'tmp', 'files']
   dirs.forEach(function(dir) {
-    fs.makeTree(config.paths[dir])
+    fs.makeTreeSync(config.paths[dir])
   })
+  fs.copySync(__dirname+ '/hello-world.md', config.paths.posts+'/hello-world.md')
 }
 
 function downloadDefaultTheme() {
   var child = require('child_process')
-  var url = 'https://github.com/TryGhost/Casper.git'
+  var url = config.themeUrl || 'https://github.com/TryGhost/Casper.git'
   var git = child.spawn('git',['clone','--depth','1',url],
     { cwd: config.paths['themes'] },
     function (error) {
       logger.error(error)
     })
-  logger.info('Start clone default ghost theme Casper: '+url+'...')
+  logger.info('Start clone ghost theme '+config.theme+': '+url+'...')
   git.stdout.pipe(process.stdout)
   git.stderr.pipe(process.stderr)
 }
