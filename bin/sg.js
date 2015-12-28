@@ -1,10 +1,12 @@
+#!/bin/node
+
 var program = require('commander')
 var fs = require('../lib/utils/fs-plus2')
 var logger = require('../lib/utils/logger')
 
 program
   .version(require('../package.json').version)
-  .usage('sg [command] [options]')
+  .usage('[command] [options]')
   .description('another static glog generator by using ghost theme')
   .option('-c, --config <path>', 'set config path. defaults to ./config.yaml')
   .option('-p, --port', 'the port of local server')
@@ -37,7 +39,7 @@ program.command('clean')
   .action(function() {
     setCliConfig()
     clean()
-})
+  })
 
 program.command('deploy')
   .alias('d')
@@ -68,7 +70,7 @@ function setCliConfig() {
   global.cliConfig = program
 }
 
-function generate(pool){
+function generate(pool) {
   var config = require('../lib/config')
   var Temp = require('../lib/utils/temp')
   var logger = require('../lib/utils/logger')
@@ -79,29 +81,31 @@ function generate(pool){
   return require('../lib/statical_ghost').generate(pool)
 }
 
-function clean(){
+function clean() {
+  var logger = require('../lib/utils/logger')
+  logger.info('clean temp dir...');
   var config = require('../lib/config')
   fs.removeSync(config.paths.tmp)
 }
 
-function deploy(){
+function deploy() {
   logger.info('start deploying...')
   var exec = require('child_process').exec
   var config = require('../lib/config')
-  if(!config.deploy){
+  if (!config.deploy) {
     logger.warn('no deploy commands found, plz check yout config file')
     return
   }
   exec(config.deploy, {
     maxBuffer: 200
-  }, function(error, stdout, stderr){
+  }, function(error, stdout, stderr) {
     // error && console.error(error)
     console.log(stdout)
     console.error(stderr)
   })
 }
 
-function server(){
+function server() {
   var chokidar = require('chokidar');
   var config = require('../lib/config')
   var staticalGhost = require('../lib/statical_ghost')
@@ -110,39 +114,49 @@ function server(){
     autoKill: false
   })
   var isBusy = false
-  pool.on('finish', function(){
-    isBusy = false
-    console.log('')
-    logger.info('finish generating...')
-  })
-  // One-liner for current directory, ignores .dotfiles
+  pool.on('finish', function() {
+      isBusy = false
+      console.log('')
+      logger.info('finish generating...')
+    })
+    // One-liner for current directory, ignores .dotfiles
   var last = new Date().getTime()
-  var onFile = function(event, path) {
+  var onFile = function(file, event) {
     var now = new Date().getTime()
-    if(!isBusy && now - last>1000){
+    if (!isBusy && now - last > 3000) {
       isBusy = true
+      if (file.indexOf(config.paths.theme) >= 0) {
+        clean()
+      }
       logger.info('start generating...')
       staticalGhost.generate(pool)
-      last =new Date().getTime()
+      last = new Date().getTime()
     }
   }
   chokidar.watch([config.paths.posts,
-    config.paths.theme,
-    config.configFile])
+      config.paths.theme,
+      config.configFile
+    ])
     .on('add', onFile)
     .on('change', onFile)
     .on('unlink', onFile);
 
   var port = program.port || 8080
   var staticServer = new static.Server(config.paths.public, {
-    cache: false
+    cache: false,
+    headers: {
+      'Expires': '-1',
+      'Cache-Control': 'no_cache',
+      'Pragma': 'no-cache'
+    }
   });
-  require('http').createServer(function (request, response) {
-      request.addListener('end', function () {
-          staticServer.serve(request, response);
-      }).resume();
+
+  require('http').createServer(function(request, response) {
+    request.addListener('end', function() {
+      staticServer.serve(request, response);
+    }).resume();
   }).listen(port);
-  logger.info('start server at: \n\n    http://127.0.0.1:'+port +'\n\n    press Ctrl+C to exit the server')
+  logger.info('start server at: \n\n    http://127.0.0.1:' + port + '\n\n    press Ctrl+C to exit the server')
 }
 
 module.exports = program

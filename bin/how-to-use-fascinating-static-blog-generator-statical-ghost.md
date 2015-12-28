@@ -4,8 +4,7 @@ author: me
 tags: [hello, world]
 ---
 
-# statical-ghost
-another static blog generator using ghost theme
+statical-ghost: another static blog generator using ghost theme
 
 # INSTALL
 
@@ -17,7 +16,7 @@ npm i -g statical-ghost
 
 * fast, generate thousands of posts only for seconds
 * easy to use, see [usage](#usage)
-*
+* based on ghost theme, a lost of free theme are available. <http://marketplace.ghost.org/themes/free/>
 
 
 # USAGE
@@ -32,19 +31,22 @@ sg init # or sg i
 
 then, you got a structure like this:
 
->  <current directory>
->    |-posts   `for your markdown posts, supports sub directory`
->    |-public `this directory include the generated blog site`
->    |-tmp `temp directory, speed up generating`
->    |-themes `ghost themes`
+```
+<current directory>
+  |-posts   # for your markdown posts, supports sub directory
+  |-files   # files below this directory will be copied to /public
+  |-public  # this directory include the generated blog site
+  |-tmp     # temp directory, speed up generating
+  |-themes  # ghost themes
+```
 
-this command not only create directories, but also generate demo post, config.yaml and even downloading a default ghost theme Casper. You can right your posts in `/posts`.
+this command not only create directories, but also generate demo post, config.yaml and even downloading a default ghost theme Casper. You can write your posts in `/posts`.
 
 after this command, actually you have already got everything ready, just enter next step.
 
 ## generate
 
-now you can generate your blog, it's very fast because of using multi-process
+now you can start generating your blog, it's very fast because of using multi-process
 ```sh
 sg generate # or sg g
 ```
@@ -57,7 +59,7 @@ you can see your `/public` directory added many files, then run
 sg server # or sg s
 ```
 
-to start a local static server, it also auto generate your posts if posts or theme are changed
+to start a local static server, it would also auto generate your posts if posts or theme are changed
 now click <http://127.0.0.1:8080> to see your blog !!!
 
 ## see help
