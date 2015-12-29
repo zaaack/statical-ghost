@@ -123,7 +123,7 @@ function server() {
   var last = new Date().getTime()
   var onFile = function(file, event) {
     var now = new Date().getTime()
-    if (!isBusy && now - last > 3000) {
+    if (!isBusy && now - last > 1000) {
       isBusy = true
       if (file.indexOf(config.paths.theme) >= 0) {
         clean()

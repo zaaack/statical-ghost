@@ -10,6 +10,7 @@ blog:
 theme: Casper
 themeUrl: https://github.com/TryGhost/Casper.git
 deploy: git add -A;git commit -m 'new post';git push origin master;
+timeFormat: YYYY-MM-DD HH:mm:ss # see http://momentjs.com/docs/#/displaying/format/
 # routeKeywords: # link 'author' in http://localhost:8080/author/me
 #   tag: tag
 #   author: author

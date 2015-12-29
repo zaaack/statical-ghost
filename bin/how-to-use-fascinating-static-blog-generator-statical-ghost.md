@@ -2,6 +2,8 @@ title: How to use fascinating static blog generator statical-ghost? # these are 
 slug: how-to-use-fascinating-static-blog-generator-statical-ghost
 author: me
 tags: [hello, world]
+top: true
+page: false # not in loop
 ---
 
 statical-ghost: another static blog generator using ghost theme
