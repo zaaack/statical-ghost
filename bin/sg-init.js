@@ -15,7 +15,7 @@ function initConfig() {
 }
 
 function initFolders() {
-  var dirs = ['public', 'posts', 'themes', 'tmp', 'files']
+  var dirs = ['public', 'posts', 'themes', 'tmp']
   var copyFile = 'how-to-use-fascinating-static-blog-generator-statical-ghost.md'
   dirs.forEach(function(dir) {
     fs.makeTreeSync(config.paths[dir])

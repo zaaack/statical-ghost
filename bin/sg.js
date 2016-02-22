@@ -8,7 +8,7 @@ program
   .version(require('../package.json').version)
   .usage('[command] [options]')
   .description('another static glog generator by using ghost theme')
-  .option('-c, --config <path>', 'set config path. defaults to ./config.yaml')
+  .option('-c, --config <path>', 'set config path. default is ./config.yaml')
   .option('-p, --port', 'the port of local server')
   .action(function(cmd, config) {
     setCliConfig()
@@ -82,10 +82,8 @@ function generate(pool) {
 }
 
 function clean() {
-  var logger = require('../lib/utils/logger')
-  logger.info('clean temp dir...');
-  var config = require('../lib/config')
-  fs.removeSync(config.paths.tmp)
+  require('../lib/utils/logger').info('clean temp dir...');
+  require('../lib/utils/temp').clear()
 }
 
 function deploy() {
@@ -99,7 +97,7 @@ function deploy() {
   exec(config.deploy, {
     maxBuffer: 200
   }, function(error, stdout, stderr) {
-    // error && console.error(error)
+    error && console.error(error)
     console.log(stdout)
     console.error(stderr)
   })
@@ -123,10 +121,14 @@ function server() {
   var last = new Date().getTime()
   var onFile = function(file, event) {
     var now = new Date().getTime()
-    if (!isBusy && now - last > 1000) {
+    if (!isBusy && now - last > 3000) {
       isBusy = true
-      if (file.indexOf(config.paths.theme) >= 0) {
+      if (file.indexOf(config.paths.themes) >= 0) {//主题改变则清楚缓存并重新复制
+        // console.log('copy theme')
         clean()
+        // fs.copy(config.paths.theme + '/assets', config.paths.public + '/assets')
+      }else if (file.indexOf(config.paths.files) >= 0) {//文件改变则重新复制
+        // fs.copy(config.paths.files, config.paths.public)
       }
       logger.info('start generating...')
       staticalGhost.generate(pool)

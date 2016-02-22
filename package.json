@@ -1,6 +1,6 @@
 {
   "name": "statical-ghost",
-  "version": "1.0.4",
+  "version": "0.0.1",
   "description": "another static blog generator using ghost themes ",
   "main": "lib/statical-ghost.js",
   "bin": {

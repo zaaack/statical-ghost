@@ -1,9 +1,10 @@
 title: How to use fascinating static blog generator statical-ghost? # these are yaml config, notice the space !
 slug: how-to-use-fascinating-static-blog-generator-statical-ghost
-author: me
-tags: [hello, world]
-top: true
-page: false # not in loop
+date: 2015-12-30 11:00:00 # optional, use stat.birthtime if not exists
+author: me # optional
+tags: [hello, world] # optional, tag list
+top: true # optional, be in the top of loop
+page: false # optional, not in loop
 ---
 
 statical-ghost: another static blog generator using ghost theme
@@ -90,7 +91,7 @@ Usage: sg sg [command] [options]
 
     -h, --help           output usage information
     -V, --version        output the version number
-    -c, --config <path>  set config path. defaults to ./config.yaml
+    -c, --config <path>  set config path. default is ./config.yaml
     -p, --port           the port of local server
 ```
 
