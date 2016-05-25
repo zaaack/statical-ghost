@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 var program = require('commander')
 var fs = require('../lib/utils/fs-plus2')
 var logger = require('../lib/utils/logger')
