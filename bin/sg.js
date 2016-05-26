@@ -118,16 +118,17 @@ function server() {
     })
     // One-liner for current directory, ignores .dotfiles
   var last = new Date().getTime()
-  var onFile = function(file, event) {
+  var onFile = function(event, file) {
+    if(['add','change','unlink','rename'].indexOf(event)<0){
+      return false
+    }
     var now = new Date().getTime()
     if (!isBusy && now - last > 3000) {
       isBusy = true
-      if (file.indexOf(config.paths.themes) >= 0) {//主题改变则清楚缓存并重新复制
-        // console.log('copy theme')
+      if (event !== 'change'
+          ||file.indexOf(config.paths.themes) >= 0//主题改变则清楚缓存并重新复制
+          ||file.indexOf(config.paths.files) >= 0){ // 文件改变
         clean()
-        // fs.copy(config.paths.theme + '/assets', config.paths.public + '/assets')
-      }else if (file.indexOf(config.paths.files) >= 0) {//文件改变则重新复制
-        // fs.copy(config.paths.files, config.paths.public)
       }
       logger.info('start generating...')
       staticalGhost.generate(pool)
@@ -136,11 +137,10 @@ function server() {
   }
   chokidar.watch([config.paths.posts,
       config.paths.theme,
+      config.paths.files,
       config.configFile
     ])
-    .on('add', onFile)
-    .on('change', onFile)
-    .on('unlink', onFile);
+    .on('raw', onFile)
 
   var port = program.port || 8080
   var staticServer = new static.Server(config.paths.public, {
