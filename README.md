@@ -144,4 +144,6 @@ tags: # all tags, it would be auto appended after appear in posts
 ```
 
 ## TODO
-use graceful-fs 
+[ ] add plugin.js to custom markdown-it's config and plugin
+[ ] change tasks to independent function and args, so plugin.js can add tasks too.
+[ ] plugin.js can use post property 
